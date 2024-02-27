@@ -42,3 +42,7 @@ for _ in [H3, H15, H25]:
 # Читаем атрибуты экземпляров и класса
 for _ in [H3, H15, H25, House]:
     print(_.__dict__)
+    for __ in range(_.numberOfFloors):
+        print(__)
+
+
