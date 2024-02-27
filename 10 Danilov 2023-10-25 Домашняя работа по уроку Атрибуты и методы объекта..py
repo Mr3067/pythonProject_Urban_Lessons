@@ -40,7 +40,7 @@ for _ in [H3, H15, H25]:
         delattr(_, 'basement')
 
 # Читаем атрибуты экземпляров и класса
-for _ in [H3, H15, H25, House]:
+for _ in [H3, H15, H25]:
     print(_.__dict__)
     for __ in range(_.numberOfFloors):
         print(__)
