@@ -28,6 +28,7 @@ class House:
         def inner(*args, **kwargs):
             if len(args) == 1:
                 print('\nNumber of floors couldn\'t be None\n\nNewNumberOfFloors = 0 when '+outstr)
+                func(*args, **kwargs)
             else:
 
                 if args[1] < 0:
