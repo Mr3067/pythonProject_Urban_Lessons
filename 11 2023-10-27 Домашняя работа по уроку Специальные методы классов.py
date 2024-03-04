@@ -18,6 +18,7 @@ https://urban-university.ru/members/courses/course999421818026/20231027-0000doma
 """
 
 class House:
+    numberOfFloors = 0
     def decoratorNunberFloor(func):
 
         if func.__name__ == '__init__':
@@ -28,21 +29,24 @@ class House:
 
 
         def inner(*args, **kwargs):
-            if args[1] < 0:
-                print('\nNumber of floors couldn\'t be below zero\n\n')
-                func(*args, **kwargs)
-            #                 return 0
-            # exit('!!!!!   Wrong data      !!!!!')
-
-            if args[1] == 0:
-                print(f'Number of floors is {args[1]} when '+outstr)
-                func(*args, **kwargs)
-            elif args[1] == 1:
-                print(f'Number of floors is {args[1]} when '+outstr)
-                func(*args, **kwargs)
+            if len(args) == 1:
+                print('\nNumber of floors couldn\'t be None\n\nNewNumberOfFloors = 0 when '+outstr)
+                print(args)
             else:
-                print(f'Number of floors are {args[1]} when '+outstr)
-                func(*args, **kwargs)
+
+                if args[1] < 0:
+                    print('\nNumber of floors couldn\'t be below zero\n\nNewNumberOfFloors = 0 when '+outstr)
+                    func(*args, **kwargs)
+
+                elif args[1] == 0 :
+                    print(f'Number of floors is {args[1]} when '+outstr)
+                    func(*args, **kwargs)
+                elif args[1] == 1:
+                    print(f'Number of floors is {args[1]} when '+outstr)
+                    func(*args, **kwargs)
+                else:
+                    print(f'Number of floors are {args[1]} when '+outstr)
+                    func(*args, **kwargs)
 
         return inner
 
@@ -53,24 +57,7 @@ class House:
         self.NewNumberOfFloors = numberOfFloors
 
     @decoratorNunberFloor
-    def setNewNumberOfFloors(self, floors):
+    def setNewNumberOfFloors(self, floors=0):
 
         self.NewNumberOfFloors = floors
-
-
-    #
-    # def __getitem__(self, item):
-    #
-    # def __setitem__(self, key, value):
-    #
-    # def __del__(self):
-    #
-    #
-    # def __delitem__(self, key):
-    #
-    # def __str__(self):
-    #
-    # def __repr__(self):
-
-
 
