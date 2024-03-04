@@ -18,20 +18,16 @@ https://urban-university.ru/members/courses/course999421818026/20231027-0000doma
 """
 
 class House:
-    numberOfFloors = 0
-    def decoratorNunberFloor(func):
 
+    def decoratorNunberFloor(func):
         if func.__name__ == '__init__':
             outstr = 'init has been run'
-
         elif func.__name__ == 'setNewNumberOfFloors':
             outstr = 'set has been change NewNumberOfFloors attribute'
-
 
         def inner(*args, **kwargs):
             if len(args) == 1:
                 print('\nNumber of floors couldn\'t be None\n\nNewNumberOfFloors = 0 when '+outstr)
-                print(args)
             else:
 
                 if args[1] < 0:
@@ -47,17 +43,15 @@ class House:
                 else:
                     print(f'Number of floors are {args[1]} when '+outstr)
                     func(*args, **kwargs)
-
         return inner
 
 
     @decoratorNunberFloor
     def __init__(self,  numberOfFloors = 0):
-
         self.NewNumberOfFloors = numberOfFloors
+
 
     @decoratorNunberFloor
     def setNewNumberOfFloors(self, floors=0):
-
         self.NewNumberOfFloors = floors
 
