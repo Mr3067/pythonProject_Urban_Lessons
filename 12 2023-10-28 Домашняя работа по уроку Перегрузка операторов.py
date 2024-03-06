@@ -34,8 +34,12 @@ class Building:
     def __init__(self, numberOfFloors, buildingType):
         if isinstance(numberOfFloors, (int)):
             self.numberOfFloors = numberOfFloors
+        else:
+            exit()
         if buildingType in [' ', 'дом', 'таунхауз', 'сарай', 'гараж']:
             self.buildingType = buildingType
+        else:
+            exit()
 
     def __eq__(self, other):
         if isinstance(other, Building):
