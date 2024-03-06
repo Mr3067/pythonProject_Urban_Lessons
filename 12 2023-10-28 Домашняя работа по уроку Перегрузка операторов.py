@@ -24,9 +24,6 @@ class Building:
             if len(args) != 2:
                 inputnumberOfFloors = int(input('Введите количество этажей объекта (целое число):'))
                 inputbuildingType = input('Введите тип объекта (дом, таунхауз, сарай, гараж):')
-                print(type(inputnumberOfFloors))
-                print(type(inputbuildingType))
-                input()
                 func(self, inputnumberOfFloors, inputbuildingType)
             else:
                 func(self, *args, **kwargs)
