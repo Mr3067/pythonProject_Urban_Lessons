@@ -56,3 +56,6 @@ class House:
     def setNewNumberOfFloors(self, floors=0):
         self.NewNumberOfFloors = floors
 
+""" 
+проба отката Git
+"""
