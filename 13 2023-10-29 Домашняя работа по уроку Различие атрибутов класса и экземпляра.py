@@ -21,6 +21,7 @@ import random
 
 class Building:
     counterBilding = 0
+    counterFloorTotle = 0
 
     def __init__(self, name=None, number_of_floor=0):
         self.name = name
@@ -33,6 +34,7 @@ class Building:
         Building.counterBilding -= 1
         print(f'Удален объект {self.name}. Всего экземпляров класса {self.__class__} '
               f'осталось {Building.counterBilding}')
+
 
 
 arrayBuildings = []  # список для экземпляров класса
@@ -51,10 +53,16 @@ for i in range(0, LenOfArr):  # вывод заполненного списка
 input('\nНажмите Enter для продолжения\n')
 
 random.shuffle(arrayBuildings)  # персортица элементов списка
+for i in range(0, LenOfArr):
+    arrayBuildings[i].numberOfFloor = random.choice([i for i in range(1,10)])
+    print(arrayBuildings[i].numberOfFloor)
 
 print(f'\nВывод имен экземпляров класса после пересортицы:\n')
 for i in range(0, LenOfArr):  # измененный список
-    print(arrayBuildings[i].name)
+    Building.counterFloorTotle += arrayBuildings[i].numberOfFloor
+    print(f'Здание:{arrayBuildings[i].name},\t количество этажей здания: {arrayBuildings[i].numberOfFloor}')
+
+print(f'\nОбщее количество этажей всех зданий: {Building.counterFloorTotle}\n')
 
 input('\nНажмите Enter для удаление объектов класса Building\n')
 # наблюдаем в какой последовательности удаляются экземпляры класса. Порядок удаления не равен порядку инициализации
