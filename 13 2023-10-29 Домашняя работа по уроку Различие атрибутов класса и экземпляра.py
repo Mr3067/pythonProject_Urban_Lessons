@@ -22,34 +22,36 @@ import random
 class Building:
     counterBilding = 0
 
-    def __init__(self, name=None, numberOfFloor=0):
+    def __init__(self, name=None, number_of_floor=0):
         self.name = name
-        self.numberOfFloor = numberOfFloor
+        self.numberOfFloor = number_of_floor
         Building.counterBilding += 1
-        print(f'Сообщение Building.__init__ Создан объект {self.name} экземпляр №{Building.counterBilding} класса {self.__class__}')
+        print(f'Сообщение Building.__init__ Создан объект {self.name} экземпляр №{Building.counterBilding} '
+              f'класса {self.__class__}')
 
     def __del__(self):
         Building.counterBilding -= 1
-        print(f'Удален объект {self.name}. Всего экземпляров класса {self.__class__} осталось {Building.counterBilding}')
+        print(f'Удален объект {self.name}. Всего экземпляров класса {self.__class__} '
+              f'осталось {Building.counterBilding}')
 
 
-arrayBuildings = [] # список для экземпляров класса
+arrayBuildings = []  # список для экземпляров класса
 LenOfArr = int(input(f'Введите размер создаваемого списка экземпляров класса {Building.__name__} (целое число):'))
 
-for _ in range(1, LenOfArr+1): # заполнение списка экземплярами класса
-    arrayBuildings.append(Building(name=f'Building №{_}', numberOfFloor=0))
+for _ in range(1, LenOfArr + 1):  # заполнение списка экземплярами класса
+    arrayBuildings.append(Building(name=f'Building №{_}', number_of_floor=0))
 print(f'\nВсего создано {Building.counterBilding} экземпляров согласно счетчика класса\n')
 input('\nНажмите Enter для продолжения\n')
 print(f'\nВывод имен экземпляров класса:\n')
-for i in range(LenOfArr - 1): # вывод заполненного списка
+for i in range(LenOfArr - 1):  # вывод заполненного списка
     print(arrayBuildings[i].name)
 
 input('\nНажмите Enter для продолжения\n')
 
-random.shuffle(arrayBuildings) #персортица элементов списка
+random.shuffle(arrayBuildings)  # персортица элементов списка
 
 print(f'\nВывод имен экземпляров класса после пересортицы:\n')
-for i in range(LenOfArr - 1): # измененный список
+for i in range(LenOfArr - 1):  # измененный список
     print(arrayBuildings[i].name)
 
 input('\nНажмите Enter для удаление объектов класса Building\n')
