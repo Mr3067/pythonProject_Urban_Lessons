@@ -16,6 +16,8 @@ https://urban-university.ru/members/courses/course999421818026/20231029-0000doma
 
 """
 
+import random
+
 
 class Building:
     counterBilding = 0
@@ -24,22 +26,32 @@ class Building:
         self.name = name
         self.numberOfFloor = numberOfFloor
         Building.counterBilding += 1
-        print(f'Создан объект {self.name} экземпляр №{Building.counterBilding} класса {self.__class__}')
+        print(f'Сообщение Building.__init__ Создан объект {self.name} экземпляр №{Building.counterBilding} класса {self.__class__}')
 
     def __del__(self):
         Building.counterBilding -= 1
         print(f'Удален объект {self.name}. Всего экземпляров класса {self.__class__} осталось {Building.counterBilding}')
 
 
-arrayBuildings = []
+arrayBuildings = [] # список для экземпляров класса
+randomLenOfArr = random.randint(5, 10)  # выбор случайного размера списка объектов в заданном диапазоне
 
-for _ in range(1,  5):
+for _ in range(1, randomLenOfArr): # заполнение списка экземплярами класса
     arrayBuildings.append(Building(name=f'Building №{_}', numberOfFloor=0))
-    print(arrayBuildings[_-1])
-for i in range(4):
-    print(arrayBuildings[i].name)
-arrayBuildings.append(arrayBuildings.pop(1))
-for i in range(4):
+print(f'\nВсего создано {Building.counterBilding} экземпляров согласно счетчика класса\n')
+input('\nНажмите Enter для продолжения\n')
+print(f'\nВывод имен экземпляров класса:\n')
+for i in range(randomLenOfArr - 1): # вывод заполненного списка
     print(arrayBuildings[i].name)
 
-input('Нажмите Enter для удаление объектов класса Building')
+input('\nНажмите Enter для продолжения\n')
+
+for i in range(randomLenOfArr - 1): # бестолковая работа с элементами списка, создание пересортицы
+    arrayBuildings.append(arrayBuildings.pop(randomLenOfArr - 2 - int(random.randint(0, randomLenOfArr - 2))))
+
+print(f'\nВывод имен экземпляров класса после пересортицы:\n')
+for i in range(randomLenOfArr - 1): # измененный список
+    print(arrayBuildings[i].name)
+
+input('\nНажмите Enter для удаление объектов класса Building\n')
+# наблюдаем в какой последовательности удаляются экземпляры класса. Порядок удаления не равен порядку инициализации
