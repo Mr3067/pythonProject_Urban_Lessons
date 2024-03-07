@@ -34,23 +34,22 @@ class Building:
 
 
 arrayBuildings = [] # список для экземпляров класса
-randomLenOfArr = random.randint(5, 10)  # выбор случайного размера списка объектов в заданном диапазоне
+LenOfArr = int(input(f'Введите размер создаваемого списка экземпляров класса {Building.__name__} (целое число):'))
 
-for _ in range(1, randomLenOfArr): # заполнение списка экземплярами класса
+for _ in range(1, LenOfArr+1): # заполнение списка экземплярами класса
     arrayBuildings.append(Building(name=f'Building №{_}', numberOfFloor=0))
 print(f'\nВсего создано {Building.counterBilding} экземпляров согласно счетчика класса\n')
 input('\nНажмите Enter для продолжения\n')
 print(f'\nВывод имен экземпляров класса:\n')
-for i in range(randomLenOfArr - 1): # вывод заполненного списка
+for i in range(LenOfArr - 1): # вывод заполненного списка
     print(arrayBuildings[i].name)
 
 input('\nНажмите Enter для продолжения\n')
 
-for i in range(randomLenOfArr - 1): # бестолковая работа с элементами списка, создание пересортицы
-    arrayBuildings.append(arrayBuildings.pop(randomLenOfArr - 2 - int(random.randint(0, randomLenOfArr - 2))))
+random.shuffle(arrayBuildings) #персортица элементов списка
 
 print(f'\nВывод имен экземпляров класса после пересортицы:\n')
-for i in range(randomLenOfArr - 1): # измененный список
+for i in range(LenOfArr - 1): # измененный список
     print(arrayBuildings[i].name)
 
 input('\nНажмите Enter для удаление объектов класса Building\n')
