@@ -40,10 +40,12 @@ LenOfArr = int(input(f'Введите размер создаваемого сп
 
 for _ in range(1, LenOfArr + 1):  # заполнение списка экземплярами класса
     arrayBuildings.append(Building(name=f'Building №{_}', number_of_floor=0))
+
 print(f'\nВсего создано {Building.counterBilding} экземпляров согласно счетчика класса\n')
 input('\nНажмите Enter для продолжения\n')
+
 print(f'\nВывод имен экземпляров класса:\n')
-for i in range(LenOfArr - 1):  # вывод заполненного списка
+for i in range(0, LenOfArr):  # вывод заполненного списка
     print(arrayBuildings[i].name)
 
 input('\nНажмите Enter для продолжения\n')
@@ -51,7 +53,7 @@ input('\nНажмите Enter для продолжения\n')
 random.shuffle(arrayBuildings)  # персортица элементов списка
 
 print(f'\nВывод имен экземпляров класса после пересортицы:\n')
-for i in range(LenOfArr - 1):  # измененный список
+for i in range(0, LenOfArr):  # измененный список
     print(arrayBuildings[i].name)
 
 input('\nНажмите Enter для удаление объектов класса Building\n')
