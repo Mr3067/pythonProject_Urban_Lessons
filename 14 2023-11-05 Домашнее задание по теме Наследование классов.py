@@ -12,6 +12,8 @@ https://urban-university.ru/members/courses/course999421818026/20231105-0000doma
 Получившийся код прикрепите к заданию текстом
 
 """
+
+
 class Car:
     def __init__(self, price=1000000, horse_powers=100):
         self.__price = price
@@ -24,7 +26,6 @@ class Car:
     @horse_powers.setter
     def horse_powers(self, horse_powers):
         self.__horse_powers = horse_powers
-        return self.__horse_powers
 
     @property
     def price(self):
@@ -33,12 +34,11 @@ class Car:
     @price.setter
     def price(self, price):
         self.__price = price
-        return self.__price
 
 
 class Nissan(Car):
     def __init__(self, price=2000002, horse_powers=125):
-        super(Nissan,self).__init__(price, horse_powers)
+        super(Nissan, self).__init__(price, horse_powers)
 
 
 class Kia(Car):
