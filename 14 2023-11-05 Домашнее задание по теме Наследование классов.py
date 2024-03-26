@@ -12,41 +12,52 @@ https://urban-university.ru/members/courses/course999421818026/20231105-0000doma
 Получившийся код прикрепите к заданию текстом
 
 """
-
-
 class Car:
-    price = 1000000
+    def __init__(self, price=1000000, horse_powers=100):
+        self.__price = price
+        self.__horse_powers = horse_powers
 
+    @property
     def horse_powers(self):
-        return 100
+        return self.__horse_powers
+
+    @horse_powers.setter
+    def horse_powers(self, horse_powers):
+        self.__horse_powers = horse_powers
+        return self.__horse_powers
+
+    @property
+    def price(self):
+        return self.__price
+
+    @price.setter
+    def price(self, price):
+        self.__price = price
+        return self.__price
 
 
 class Nissan(Car):
-    price = 2000002
-
-    def horse_powers(self):
-        return 125
+    def __init__(self, price=2000002, horse_powers=125):
+        super(Nissan,self).__init__(price, horse_powers)
 
 
 class Kia(Car):
-    price = 2500052
-
-    def horse_powers(self):
-        return 150
+    def __init__(self, price=2500052, horse_powers=150):
+        super(Kia, self).__init__(price, horse_powers)
 
 
 c = Car()
 print(c)
 assert isinstance(c, Car)
 assert c.price == 1000000
-assert c.horse_powers() == 100
+assert c.horse_powers == 100
 assert c.__class__.__base__ == object
 
 n = Nissan()
 print(n)
 assert isinstance(n, (Nissan, Car))
 assert n.price == 2000002
-assert n.horse_powers() == 125
+assert n.horse_powers == 125
 assert n.__class__.__base__ != object
 assert n.__class__.__base__ == Car
 
@@ -54,6 +65,6 @@ k = Kia()
 print(k)
 assert isinstance(k, Kia)
 assert k.price == 2500052
-assert k.horse_powers() == 150
+assert k.horse_powers == 150
 assert k.__class__.__base__ != object
 assert k.__class__.__base__ == Car
