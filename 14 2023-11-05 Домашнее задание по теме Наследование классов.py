@@ -12,12 +12,12 @@ https://urban-university.ru/members/courses/course999421818026/20231105-0000doma
 Получившийся код прикрепите к заданию текстом
 
 """
-
-
 class Car:
+    count = 0
     def __init__(self, price=1000000, horse_powers=100):
         self.__price = price
         self.__horse_powers = horse_powers
+        self.__class__.count +=1
 
     @property
     def horse_powers(self):
@@ -68,3 +68,7 @@ assert k.price == 2500052
 assert k.horse_powers == 150
 assert k.__class__.__base__ != object
 assert k.__class__.__base__ == Car
+
+print(Car.count)
+
+
