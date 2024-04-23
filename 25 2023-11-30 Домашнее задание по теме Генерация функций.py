@@ -36,6 +36,7 @@ def create_operation(operation):
         return lambda *x: print(eval('-'.join(map(str, x))))
     if operation == '*':
         return lambda x, y: x * y
+
     if operation == '**':
         return lambda *x: print(eval('*'.join(map(str, x))))
 
