@@ -66,8 +66,14 @@ class Rect:
         self.b = b
 
     def __call__(self, *args, **kwargs):
+        if args:
+            self.__init__(args[0],args[1])
         return self.a * self.b
 
 
 rect1 = Rect(3, 6)
 print(rect1())
+print(rect1(5,9))
+print(rect1())
+print(rect1(77,33))
+
