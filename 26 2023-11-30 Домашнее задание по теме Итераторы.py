@@ -17,6 +17,7 @@ class EvenNumbers:
         self.e = int(end)
         self.revers = 0
 
+    def __iter__(self):
         if self.s > self.e:
             self.s, self.e = self.e, self.s
             self.revers = 1
@@ -38,8 +39,6 @@ class EvenNumbers:
                     self.e += 1
                 else:
                     self.e -=1
-
-    def __iter__(self):
         return self
 
     def __next__(self):
@@ -54,6 +53,6 @@ class EvenNumbers:
             self.e -= 2
             return inner
 
-en = EvenNumbers(-9.3, 5.5)
+en = EvenNumbers(9.3, 5.5)
 for i in en:
     print(i)
