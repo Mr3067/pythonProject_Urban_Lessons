@@ -12,7 +12,7 @@ end – конечное значение (если значение не пер
 
 
 class EvenNumbers:
-    def __init__(self, start=0, end=1):
+    def __init__(self, start=0.0, end=1.0):
         self.s = int(start)
         self.e = int(end)
         self.revers = 0
