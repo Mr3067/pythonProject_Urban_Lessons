@@ -9,12 +9,12 @@
 """
 
 
-def recur(in_str):
+def all_variants(in_str):
     n = len(in_str)
-    for k in range(n):
+    for k in range(n+1):
         inn_list = [i for i in range(k)] + [n] + [0]
         while True:
-            yield inn_list[:k]
+            yield ''.join([in_str[iii] for iii in inn_list[:k]])
             for i in range(len(inn_list) - 1):
                 if inn_list[i] + 1 == inn_list[i + 1]:
                     inn_list[i] = i
@@ -26,9 +26,7 @@ def recur(in_str):
                 break
 
 
-a = 'abcde'
-for i in recur(a):
-    for ii in i:
-        print(a[ii],end='')
-    print()
+a = all_variants("abc")
+for i in a:
+    print(i)
 
