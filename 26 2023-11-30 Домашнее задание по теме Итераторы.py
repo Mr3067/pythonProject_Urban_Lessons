@@ -13,39 +13,47 @@ end – конечное значение (если значение не пер
 
 class EvenNumbers:
     def __init__(self, start=0, end=1):
-        if abs(start) > abs(end):
-            raise TypeError
         self.s = int(start)
         self.e = int(end)
-        # print(self.s, self.e)
-        if self.e < 0:
-            if self.s > start:
-                self.s -= 1
-            if self.s % 2 != 0:
-                self.s -= 1
+        self.revers = 0
+
+        if self.s > self.e:
+            self.s, self.e = self.e, self.s
+            self.revers = 1
+
         if self.e > 0:
             if self.s % 2 != 0:
-                self.s += 1
-        # print(self.s,self.e)
+                self.s = int(self.s) + 1
+            if self.e % 2 != 0:
+                self.e -= 1
+
+        elif self.e < 0:
+            if self.s % 2 != 0:
+                if self.s >= 0:
+                    self.s = int(self.s) - 1
+                else:
+                    self.s = int(self.s) + 1
+            if self.e % 2 != 0:
+                if self.e >=0:
+                    self.e += 1
+                else:
+                    self.e -=1
+
     def __iter__(self):
         return self
 
     def __next__(self):
-        if self.e > 0:
-            if self.s > self.e:
-                raise StopIteration
-            innindex = self.s
+        if self.s > self.e:
+            raise StopIteration
+        if not self.revers:
+            inner = self.s
             self.s += 2
-            return innindex
-        if self.e < 0:
-            if self.s < self.e:
-                raise StopIteration
-            innindex = self.s
-            self.s -= 2
-            return innindex
+            return inner
+        else:
+            inner = self.e
+            self.e -= 2
+            return inner
 
-
-en = EvenNumbers(10, -25)
-
+en = EvenNumbers(-9.3, 5.5)
 for i in en:
     print(i)
