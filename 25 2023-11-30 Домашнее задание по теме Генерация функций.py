@@ -41,7 +41,6 @@ def create_operation(operation):
         return lambda *x: print(eval('*'.join(map(str, x))))
 
 
-
 a = create_operation('+')
 print(a(12, 17))
 
@@ -60,6 +59,7 @@ print(a(12, 17))
 a = create_operation('**')
 print(a(2, 6, 7, 8, 45, -100))
 
+
 class Rect:
     def __init__(self, a, b):
         self.a = a
@@ -67,13 +67,12 @@ class Rect:
 
     def __call__(self, *args, **kwargs):
         if args:
-            self.__init__(args[0],args[1])
+            self.__init__(args[0], args[1])
         return self.a * self.b
 
 
 rect1 = Rect(3, 6)
 print(rect1())
-print(rect1(5,9))
+print(rect1(5, 9))
 print(rect1())
-print(rect1(77,33))
-
+print(rect1(77, 33))
