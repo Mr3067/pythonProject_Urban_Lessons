@@ -26,7 +26,7 @@ def all_variants(in_str):
                 break
 
 
-a = all_variants("abc")
+a = all_variants("abc125")
 for i in a:
     print(i)
 
