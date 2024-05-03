@@ -17,6 +17,7 @@ https://urban-university.ru/members/courses/course999421818026/20231203-0000doma
 
 from functools import wraps
 
+
 def gen_primes(n=2):
     """
     Генератор простых чисел в диапазоне от 2 до n

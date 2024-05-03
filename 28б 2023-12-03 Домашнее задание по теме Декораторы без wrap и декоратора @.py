@@ -14,6 +14,8 @@
 
 https://urban-university.ru/members/courses/course999421818026/20231203-0000domasnee-zadanie-po-teme-dekoratory-231730783138
 """
+
+
 # from functools import wraps
 
 def gen_primes(n=2):
