@@ -59,7 +59,7 @@ def sum_three(*args):
     :param args: три значения для операции сложения
     :return: результат сложения трех значений
     """
-    if len(args) != 3 or any(i < 0 or i == 0 for i in args):
+    if len(args) != 3 or any(i <= 0 for i in args):
         raise ValueError
     return sum(args)
 
