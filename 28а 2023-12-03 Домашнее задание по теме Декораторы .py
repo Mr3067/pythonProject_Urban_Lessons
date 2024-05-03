@@ -14,7 +14,6 @@
 
 https://urban-university.ru/members/courses/course999421818026/20231203-0000domasnee-zadanie-po-teme-dekoratory-231730783138
 """
-
 from functools import wraps
 
 def gen_primes(n=2):
@@ -64,5 +63,6 @@ def sum_three(*args):
 
 
 # sum_three = is_prime(sum_three)  # Декоратор через замыкание
+
 print(sum_three(9900, 70, 3))
 print(sum_three.__doc__)
