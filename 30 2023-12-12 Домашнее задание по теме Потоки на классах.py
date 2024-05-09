@@ -16,7 +16,7 @@ class Knight(threading.Thread):
         self.skill = skill
         self.enemy = 100
         self.days = 0
-        self.lock = threading.Lock()
+        self.lock = threading.RLock()
 
     def run(self):
         self.lock.acquire()
