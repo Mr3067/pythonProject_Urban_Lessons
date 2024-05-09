@@ -15,7 +15,7 @@ def one_ten():
         lock.acquire()
         print(i, flush=True)
         lock.release()
-        time.sleep(1)
+        time.sleep((0.1, 0.5)[i // 2 == 0])
 
 
 def a_j():
@@ -23,14 +23,31 @@ def a_j():
         lock.acquire()
         print(chr(i), flush=True)
         lock.release()
-        time.sleep(1)
+        time.sleep((0.1, 0.5)[i // 2 == 0])
 
 
 start = datetime.datetime.now()
-th1 = threading.Thread(target=one_ten)
-th2 = threading.Thread(target=a_j)
-th1.start()
-th2.start()
-th1.join()
-th2.join()
-print(f'Время выполнения двух потоков: {datetime.datetime.now() - start}')
+th_dict_dig = {}
+th_dict_let = {}
+yy = int(input('Введите количество потоков для функции с цифрами: '))
+uu = int(input('Введите количество потоков для функции с буквами: '))
+for i in range(yy):
+    th_dict_dig[i] = threading.Thread(target=one_ten)
+    th_dict_dig[i].start()
+for ii in range(uu):
+    th_dict_let[ii] = threading.Thread(target=a_j)
+    th_dict_let[ii].start()
+
+for i in th_dict_dig:
+    th_dict_dig[i].join()
+
+for ii in th_dict_let:
+    th_dict_let[ii].join()
+
+# th1 = threading.Thread(target=one_ten)
+# th2 = threading.Thread(target=a_j)
+# th1.start()
+# th2.start()
+# th1.join()
+# th2.join()
+print(f'Время выполнения {yy + uu} потоков: {datetime.datetime.now() - start}')
