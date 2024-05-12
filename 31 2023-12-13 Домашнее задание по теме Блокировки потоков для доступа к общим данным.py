@@ -14,13 +14,15 @@ class BankAccount:
 
     def deposit(self, amount):
         with self.lock:
-            self.balance += amount
-            print(f'Deposited {amount}, new balance is {self.balance}')
+            if self.lock.locked():  # Проверка включения блокироки для проверки можно установить not self.lock.locked()
+                self.balance += amount
+                print(f'Deposited {amount}, new balance is {self.balance}')
 
     def withdraw(self, amount):
         with self.lock:
-            self.balance -= amount
-            print(f'Withdrew {amount}, new balance is {self.balance}')
+            if self.lock.locked():  # Проверка включения блокироки для проверки можно установить not self.lock.locked()
+                self.balance -= amount
+                print(f'Withdrew {amount}, new balance is {self.balance}')
 
 
 def deposit_task(account, amount):
