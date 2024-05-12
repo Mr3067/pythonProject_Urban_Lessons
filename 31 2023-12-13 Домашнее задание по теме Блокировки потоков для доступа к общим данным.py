@@ -8,17 +8,17 @@ import threading
 class BankAccount:
     def __init__(self, balance=1000, amount=0, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.lock = threading.Lock
+        self.lock = threading.Lock()
         self.balance = balance
         self.amount = amount
 
     def deposit(self, amount):
-        with self.lock():
+        with self.lock:
             self.balance += amount
             print(f'Deposited {amount}, new balance is {self.balance}')
 
     def withdraw(self, amount):
-        with self.lock():
+        with self.lock:
             self.balance -= amount
             print(f'Withdrew {amount}, new balance is {self.balance}')
 
