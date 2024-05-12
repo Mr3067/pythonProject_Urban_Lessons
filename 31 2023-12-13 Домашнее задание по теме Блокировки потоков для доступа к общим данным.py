@@ -13,10 +13,6 @@ class BankAccount:
         self.amount = amount
 
     def deposit(self, amount):
-        with self.lock2:
-            for i in range(5):
-                print(self.lock2.)
-
         with self.lock:
             if self.lock.locked():  # Проверка включения блокироки для проверки можно установить not self.lock.locked()
                 self.balance += amount
