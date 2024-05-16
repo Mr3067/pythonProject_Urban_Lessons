@@ -32,7 +32,7 @@ class Customer(Thread):  # В очередь добавляются клиент
                 Customer.customer_number += 1
                 print(f'Посетитель номер {Customer.customer_number} прибыл.')
                 customer_queue.put(Customer.customer_number)
-                sleep(0.5 + random())
+                sleep(1)
             elif table_queue.empty() and customer_queue.qsize() < 5:
                 Customer.customer_number += 1
                 print(f'Посетитель номер {Customer.customer_number} прибыл.')
@@ -57,7 +57,7 @@ class Cafe:
         inn_customer = customer.get()
         print(f'Посетитель номер {inn_customer} сел за стол {inn_table}.')
         self.lock.release()
-        sleep(5)
+        sleep(7)
         print(f'Посетитель номер {inn_customer} покушал и ушёл. Стол {inn_table} освободился.')
         table.put((inn_table, True))
 
