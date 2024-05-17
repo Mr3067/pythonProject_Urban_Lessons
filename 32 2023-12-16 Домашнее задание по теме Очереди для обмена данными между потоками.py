@@ -79,14 +79,14 @@ if __name__ == '__main__':
     table1 = Table(1)
     table2 = Table(2)
     table3 = Table(3)
-    table4 = Table(4)
-    table5 = Table(5)
-    table6 = Table(6)
-    table7 = Table(7)
-    table8 = Table(8)
-    table9 = Table(9)
-    table10 = Table(10)
-    tables = [table1, table2, table3]
+    # table4 = Table(4)
+    # table5 = Table(5)
+    # table6 = Table(6)
+    # table7 = Table(7)
+    # table8 = Table(8)
+    # table9 = Table(9)
+    # table10 = Table(10)
+    tables = []
     # Инициализируем кафе
     cafe = Cafe(tables)
 
