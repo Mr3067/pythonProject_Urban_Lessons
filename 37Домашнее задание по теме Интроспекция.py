@@ -24,7 +24,7 @@ def introspection_info(obj=math):
         if inspect.isclass(get_attr):
             under_line['class'].append(attr)
         if inspect.ismodule(get_attr):
-            under_line['module'].append(attr)
+            under_line['modules'].append(attr)
         if attr.startswith('_'):
             under_line['privet attributes'].append(attr)
         if callable(get_attr):
