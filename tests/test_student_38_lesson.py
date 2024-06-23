@@ -1,5 +1,7 @@
 import unittest
 from HW_38 import Student
+
+
 class Student_test(unittest.TestCase):
 
     def setUp(self):
@@ -8,13 +10,13 @@ class Student_test(unittest.TestCase):
         self.gennadiy = Student('Gennadiy')
         self.gennadiy.distance = 0
 
-
     """
     Первый тест: у одного объекта должен запускать метод walk 10 раз, 
     после чего должен возвращаться результат сравнения полученных данных. 
     В случае провального теста должно выводится сообщение: 
     Дистанции не равны [дистанция человека(объекта)] != 500
     """
+
     def test_walk_10_times(self):
         for times in range(10):
             self.vasily.walk()
@@ -22,7 +24,6 @@ class Student_test(unittest.TestCase):
         self.assertEqual(self.vasily.distance,
                          500,
                          f'Дистанции не равны {self.vasily.distance}] != 500')
-
 
     """
     Второй тест: 
@@ -32,6 +33,7 @@ class Student_test(unittest.TestCase):
     Дистанции не равны [дистанция человека(объекта)] != 1000
     
     """
+
     def test_run_10_times(self):
         for times in range(10):
             self.vasily.run()
@@ -47,20 +49,13 @@ class Student_test(unittest.TestCase):
     В  случае провального теста должно выводится сообщение: 
     бегущий человек] должен преодолеть дистанцию больше, чем [идущий человек].
     """
+
     def test_comp(self):
         self.vasily.run()
         self.gennadiy.walk()
         self.assertGreater(self.vasily.distance,
-                        self.gennadiy.distance,
-                        f'{self.vasily.name} должен преодолеть дистанцию больше, чем {self.gennadiy.name}')
-
-
-
-
-
-
-
-
+                           self.gennadiy.distance,
+                           f'{self.vasily.name} должен преодолеть дистанцию больше, чем {self.gennadiy.name}')
 
 
 if __name__ == '__main__':
