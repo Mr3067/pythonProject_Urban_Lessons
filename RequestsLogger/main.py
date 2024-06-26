@@ -11,17 +11,17 @@ for site in sites:
         response = rq.get(site, timeout=3)
         logging.root.setLevel(logging.INFO)
         if response.status_code == 200:
-            logger.log_info.info(f'%s   code %s',
+            logger.log_info.info(f':%s, response - %s',
                                  site,
                                  response.status_code)
         else:
             logging.root.setLevel(logging.WARNING)
-            logger.log_warning.warning(f'%s   code %s',
+            logger.log_warning.warning(f':%s, response - %s',
                                  site,
                                  response.status_code)
     except Exception:
         logging.root.setLevel(logging.ERROR)
-        logger.log_error.error(f'%s   code %s',
+        logger.log_error.error(f':%s, response - %s',
                                    site,
                                    response.status_code)
 

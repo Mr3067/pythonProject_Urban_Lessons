@@ -1,2 +1,2 @@
-ERROR:https://instagram.com   code 200
-ERROR:https://twitter.com   code 200
+ERROR::https://instagram.com, response - 200
+ERROR::https://twitter.com, response - 200
