@@ -3,21 +3,6 @@
 
 """
 import logging
-#
-# my_logger = logging.getLogger('mylogger')
-# handler1 = logging.FileHandler(filename='success_responses.log',
-#                                mode='w',
-#                                encoding='utf-8')
-# handler1.setLevel(logging.INFO)
-# my_logger.addHandler(handler1)
-#
-# handler2 = logging.FileHandler(filename='bad_responses.log',
-#                                mode='w',
-#                                encoding='utf-8')
-# handler2.setLevel(logging.WARNING)
-# my_logger.addHandler(handler2)
-
-
 
 log_info = logging.getLogger(f'Log_INFO')
 log_info.setLevel(logging.INFO)
