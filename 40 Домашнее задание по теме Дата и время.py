@@ -22,7 +22,8 @@ class SuperDate(datetime):
 
     def __init__(self, *args):
         self.date_time_obj = datetime.strptime(' '.join(str(i) for i in args),
-                                               '%Y %m %d %H')
+                                                   '%Y %m %d %H')
+
 
     def get_season(self):
         for s, m in SuperDate.SEASON_DICT.items():
@@ -36,6 +37,10 @@ class SuperDate(datetime):
 
 
 if __name__ == '__main__':
-    a = SuperDate(2024, 2, 22, 12)
-    print(a.get_season())
-    print(a.get_time_of_day())
+    try:
+        a = SuperDate(2024, 2, 22, 12)
+        print(a.get_season())
+        print(a.get_time_of_day())
+    except ValueError as e:
+        print(f'Неверный формат введеных аргументов, значение ошибки: {e}')
+
