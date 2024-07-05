@@ -39,8 +39,10 @@ class SuperDate(datetime):
 if __name__ == '__main__':
     try:
         a = SuperDate(2024, 2, 22, 12)
-        print(a.get_season())
-        print(a.get_time_of_day())
     except ValueError as e:
         print(f'Неверный формат введеных аргументов, значение ошибки: {e}')
+    else:
+        print(a.get_season())
+        print(a.get_time_of_day())
+
 
