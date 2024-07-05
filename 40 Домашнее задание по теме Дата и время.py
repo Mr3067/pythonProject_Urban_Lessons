@@ -14,10 +14,10 @@ class SuperDate(datetime):
     }
 
     TIME_OF_DAY_DICT = {
+        'Night':   {0, 1, 2, 3, 4, 5},
         'Morning': {6, 7, 8, 9, 10, 11},
-        'Day': {12, 13, 14, 15, 16, 17},
-        'Evening': {18, 19, 20, 21, 22, 23},
-        'Night': {0, 1, 2, 3, 4, 5}
+        'Day':     {12, 13, 14, 15, 16, 17},
+        'Evening': {18, 19, 20, 21, 22, 23}
     }
 
     def __init__(self, *args):
