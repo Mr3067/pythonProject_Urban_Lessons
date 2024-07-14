@@ -10,7 +10,7 @@ import re
 def extract_image_links(html_text):
     match = re.findall(r'<img src=\'(.*?)\'>',
                        html_text)
-    return match
+    return match if match != [''] else []
 
 
 sample_html = "<img src='https://example.com/image1.jpg'> <img src='http://example.com/image2.png'> <img src='https://example.com/image3.gif'>"
@@ -21,5 +21,3 @@ if image_links:
         print(image_link)
 else:
     print("Нет ссылок с картинками в HTML тексте.")
-
-
