@@ -8,7 +8,7 @@ import re
 
 
 def extract_image_links(html_text):
-    match = re.findall(r'img src=\'(http[s]?:[\w\./]*)',
+    match = re.findall(r'<img src=\'(.*?)\'>',
                        html_text)
     return match
 
