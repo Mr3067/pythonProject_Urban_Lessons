@@ -12,7 +12,7 @@ email TEXT NOT NULL,
 age INTEGER,
 balance INTEGER NOT NULL)
 ''')
-for i in range(1, 10):
+for i in range(1, 11):
     cursor.execute('INSERT INTO Users (username,email,age,balance) VALUES (?,?,?,?)',
                    (f'User{i}', f'example{i}@gmail.com', f'{i * 10}', '1000'))
 
@@ -27,7 +27,7 @@ connection.commit()
 
 # input()  # check Database
 cursor.execute('SELECT COUNT(*) FROM Users')
-for i in range(1, cursor.fetchall()[0][0], 3):
+for i in range(1, cursor.fetchall()[0][0]+1, 3):
     cursor.execute('DELETE FROM Users WHERE id = ?', (i,))
 
 connection.commit()
