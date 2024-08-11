@@ -18,9 +18,10 @@ async def comm_start(message: types.Message):
                            f'Привет! Я бот помогающий твоему здоровью.')
 
 
-# @dp.message()
-# async def all_msg(message:types.Message):
-#     await print('Введите команду /start, чтобы начать общение.')
+@dp.message()
+async def all_msg(message:types.Message):
+    await bot.send_message(message.chat.id,
+                           f'Введите команду /start, чтобы начать общение.')
 
 async def main():
     await dp.start_polling(bot)
