@@ -1,7 +1,7 @@
 """
-версия aiogram 3.11.0
+версия: aiogram 3.11.0
 
-https://t.me/module_13_3_bot
+учебный бот: https://t.me/module_13_3_bot
 
 """
 from Data_Bot import api_module_13_3_bot as api
