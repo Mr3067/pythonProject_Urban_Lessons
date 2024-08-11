@@ -1,6 +1,8 @@
 """
 версия aiogram 3.11.0
 
+https://t.me/Marshallmarshallbot
+
 """
 
 from aiogram import Bot, Dispatcher, types
