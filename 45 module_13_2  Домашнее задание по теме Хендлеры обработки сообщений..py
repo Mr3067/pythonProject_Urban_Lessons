@@ -14,16 +14,26 @@ from Data_Bot import api_Marshallmarshallbot as Api
 bot = Bot(token=Api)
 dp = Dispatcher(storage=MemoryStorage())
 
+
 @dp.message(Command('start'))
 async def comm_start(message: types.Message):
     await bot.send_message(message.chat.id,
                            f'Привет! Я бот помогающий твоему здоровью.')
 
+@dp.message(Command('d'))
+async def dice(message: types.Message):
+    data = await bot.send_dice(message.chat.id, emoji='🎲')
+    await asyncio.sleep(2)
+    await bot.send_message(message.chat.id,
+                           f'{message.chat.full_name}! У тебя выпало число {data.dice.value}!')
+
+
 
 @dp.message()
-async def all_msg(message:types.Message):
+async def all_msg(message: types.Message):
     await bot.send_message(message.chat.id,
-                           f'Введите команду /start, чтобы начать общение.')
+                           f'Введите команду /start, чтобы начать общение.\n Введите команду /d покидать кубик.')
+
 
 async def main():
     await dp.start_polling(bot)
@@ -31,4 +41,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-

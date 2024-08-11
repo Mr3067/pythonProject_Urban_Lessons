@@ -53,7 +53,7 @@ async def dice(message: types.Message):
     data = await bot.send_dice(message.chat.id, emoji='🎲')
     await asyncio.sleep(5)
     await bot.send_message(message.chat.id,
-                           f'Галочка!! Ты победила! У тебя выпало число {data.dice.value}!')
+                           f'{message.chat.full_name}! У тебя выпало число {data.dice.value}!')
 
 
 
