@@ -48,8 +48,26 @@ async def cmd_start(message: Message, state:FSMContext):
 
 @dp.callback_query(F.data == "formulas")
 async def msg_formulas(callback: CallbackQuery,state: FSMContext):
+    builder_back = InlineKeyboardBuilder()
+    builder_back.add(
+        InlineKeyboardButton(text="Назад в меню", callback_data="main_menu")
+    )
     await callback.message.answer(text=f'для мужчин: 10 х вес (кг) + 6,25 x рост (см) – 5 х возраст (г) + 5;\n'
-                        f'для женщин: 10 x вес (кг) + 6,25 x рост (см) – 5 x возраст (г) – 161')
+                        f'для женщин: 10 x вес (кг) + 6,25 x рост (см) – 5 x возраст (г) – 161',
+                                  reply_markup= builder_back.as_markup()
+                                  )
+@dp.callback_query(F.data=="main_menu")
+async def cmd_start(callback: CallbackQuery):
+    builder_start = InlineKeyboardBuilder()
+    builder_start.add(
+        InlineKeyboardButton(text="Рассчитать норму калорий", callback_data= "calories"),
+                InlineKeyboardButton(text="Формулы расчёта", callback_data= "formulas")
+    )
+    await callback.message.answer(
+        text='Привет! Я бот, помогающий твоему здоровью.',
+        reply_markup=builder_start.as_markup()
+    )
+
 
 @dp.callback_query(F.data == "calories")
 async def msg_Calories(callback: CallbackQuery, state: FSMContext):
