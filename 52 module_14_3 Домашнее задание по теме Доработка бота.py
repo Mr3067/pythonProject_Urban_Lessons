@@ -99,7 +99,14 @@ async def buying_4_products(callback: CallbackQuery):
 
 @dp.callback_query(F.data == 'product_buying')
 async def send_confirm_message(callback: CallbackQuery):
-    await callback.message.answer(text="Вы успешно приобрели продукт!")
+    builder_back = InlineKeyboardBuilder()
+    builder_back.add(
+        InlineKeyboardButton(text="Назад в меню", callback_data="main_menu")
+    )
+    await callback.message.answer(
+        text="Вы успешно приобрели продукт!",
+        reply_markup=builder_back.as_markup()
+    )
 
 
 
