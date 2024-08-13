@@ -69,13 +69,9 @@ async def msg_calcul(message: Message, state: FSMContext):
     data = await state.get_data()
     summery_m = 10 * int(data['weight']) + 6.25 * int(data['growth']) + 5 * int(data['age']) + 5
     summery_w = 10 * int(data['weight']) + 6.25 * int(data['growth']) + 5 * int(data['age']) - 161
-    if data['sex'] == 1:
-        await bot.send_message(message.chat.id,
-                               text=f'Для мужчины норма калорий {summery_m}')
-    elif data['sex'] == 2:
-        await bot.send_message(message.chat.id,
-                               text=f'Для женщины норма калорий {summery_w}')
-
+    await bot.send_message(message.chat.id,
+                               text=f'Для мужчины норма калорий {summery_m}\n'
+                                    f'Для женщины норма калорий {summery_w}')
 
 async def main():
     await dp.start_polling(bot)
