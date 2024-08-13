@@ -9,22 +9,23 @@ from Data_Bot import api_module_13_6 as api
 import asyncio
 
 from aiogram import F, Bot, Dispatcher
-from aiogram.types import (Message, InlineKeyboardMarkup, InlineKeyboardButton,
-                           KeyboardButton,ReplyKeyboardMarkup,ReplyKeyboardRemove, CallbackQuery)
+from aiogram.types import (Message, InlineKeyboardButton, CallbackQuery)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.fsm.state import State,StatesGroup
+from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 
 bot = Bot(token=api)
 dp = Dispatcher(storage=MemoryStorage())
 
+
 class SomeStates(StatesGroup):
-    state1=State()
-    state2=State()
-    state3=State()
-    state4=State()
+    state1 = State()
+    state2 = State()
+    state3 = State()
+    state4 = State()
+
 
 class UserState(StatesGroup):
     age = State()
@@ -32,13 +33,12 @@ class UserState(StatesGroup):
     weight = State()
 
 
-
 @dp.message(Command("start"))
-async def cmd_start(message: Message, state:FSMContext):
+async def cmd_start(message: Message, state: FSMContext):
     builder_start = InlineKeyboardBuilder()
     builder_start.add(
-        InlineKeyboardButton(text="Рассчитать норму калорий", callback_data= "calories"),
-                InlineKeyboardButton(text="Формулы расчёта", callback_data= "formulas")
+        InlineKeyboardButton(text="Рассчитать норму калорий", callback_data="calories"),
+        InlineKeyboardButton(text="Формулы расчёта", callback_data="formulas")
     )
     await message.answer(
         text='Привет! Я бот, помогающий твоему здоровью.',
@@ -46,22 +46,25 @@ async def cmd_start(message: Message, state:FSMContext):
     )
     await state.set_state(SomeStates.state1)
 
+
 @dp.callback_query(F.data == "formulas")
-async def msg_formulas(callback: CallbackQuery,state: FSMContext):
+async def msg_formulas(callback: CallbackQuery, state: FSMContext):
     builder_back = InlineKeyboardBuilder()
     builder_back.add(
         InlineKeyboardButton(text="Назад в меню", callback_data="main_menu")
     )
     await callback.message.answer(text=f'для мужчин: 10 х вес (кг) + 6,25 x рост (см) – 5 х возраст (г) + 5;\n'
-                        f'для женщин: 10 x вес (кг) + 6,25 x рост (см) – 5 x возраст (г) – 161',
-                                  reply_markup= builder_back.as_markup()
+                                       f'для женщин: 10 x вес (кг) + 6,25 x рост (см) – 5 x возраст (г) – 161',
+                                  reply_markup=builder_back.as_markup()
                                   )
-@dp.callback_query(F.data=="main_menu")
+
+
+@dp.callback_query(F.data == "main_menu")
 async def cmd_start(callback: CallbackQuery):
     builder_start = InlineKeyboardBuilder()
     builder_start.add(
-        InlineKeyboardButton(text="Рассчитать норму калорий", callback_data= "calories"),
-                InlineKeyboardButton(text="Формулы расчёта", callback_data= "formulas")
+        InlineKeyboardButton(text="Рассчитать норму калорий", callback_data="calories"),
+        InlineKeyboardButton(text="Формулы расчёта", callback_data="formulas")
     )
     await callback.message.answer(
         text='Привет! Я бот, помогающий твоему здоровью.',
@@ -102,11 +105,11 @@ async def msg_calcul(message: Message, state: FSMContext):
                            text=f'Для мужчины норма калорий {summery_m}\n'
                                 f'Для женщины норма калорий {summery_w}')
 
-#____________________________________________________________________
+
+# ____________________________________________________________________
 async def main():
     await dp.start_polling(bot)
 
+
 if __name__ == "__main__":
     asyncio.run(main())
-
-
