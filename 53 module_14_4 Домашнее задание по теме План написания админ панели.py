@@ -35,6 +35,7 @@ class UserState(StatesGroup):
 
 @dp.message(Command("start"))
 async def cmd_start(message: Message, state: FSMContext):
+    initiate_db() #Инициализация и заполнение 4 значениями учебной базы данных
     builder_start = InlineKeyboardBuilder()
     builder_start.add(
         InlineKeyboardButton(text="Рассчитать норму калорий", callback_data="calories"),
