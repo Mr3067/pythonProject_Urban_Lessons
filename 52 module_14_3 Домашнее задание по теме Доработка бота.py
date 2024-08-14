@@ -77,12 +77,14 @@ async def cmd_start(callback: CallbackQuery):
 
 @dp.callback_query(F.data == "buying_4_products")
 async def buying_4_products(callback: CallbackQuery):
+
     buyng_4_products = InlineKeyboardBuilder()
     buyng_4_products.add(
         InlineKeyboardButton(text="Product1", callback_data='product_buying'),
         InlineKeyboardButton(text="Product2", callback_data='product_buying'),
         InlineKeyboardButton(text="Product3", callback_data='product_buying'),
         InlineKeyboardButton(text="Product4", callback_data='product_buying'),
+        InlineKeyboardButton(text="Назад в меню", callback_data="main_menu")
     )
     for filename in os.listdir('Img_module_14_3'):
         photo = FSInputFile('Img_module_14_3' + '\\' + filename)
@@ -92,6 +94,7 @@ async def buying_4_products(callback: CallbackQuery):
                     f'| Описание: описание {filename.split('.')[0][-1]} '
                     f'| Цена: {int(filename.split('.')[0][-1]) * 100}'
         )
+    buyng_4_products.adjust(4)
     await callback.message.answer(
         text='Выберите продукт для покупки:',
         reply_markup=buyng_4_products.as_markup()
@@ -134,13 +137,20 @@ async def msg_weight(message: Message, state: FSMContext):
 
 @dp.message(UserState.weight)
 async def msg_calcul(message: Message, state: FSMContext):
+    builder_back = InlineKeyboardBuilder()
+    builder_back.add(
+        InlineKeyboardButton(text="Назад в меню", callback_data="main_menu")
+    )
     await state.update_data(weight=message.text)
     data = await state.get_data()
     summery_m = 10 * int(data['weight']) + 6.25 * int(data['growth']) + 5 * int(data['age']) + 5
     summery_w = 10 * int(data['weight']) + 6.25 * int(data['growth']) + 5 * int(data['age']) - 161
-    await bot.send_message(message.chat.id,
-                           text=f'Для мужчины норма калорий {summery_m}\n'
-                                f'Для женщины норма калорий {summery_w}')
+    await bot.send_message(
+        message.chat.id,
+        text=f'Для мужчины норма калорий {summery_m}\n'
+        f'Для женщины норма калорий {summery_w}',
+        reply_markup=builder_back.as_markup()
+    )
 
 
 # ____________________________________________________________________
