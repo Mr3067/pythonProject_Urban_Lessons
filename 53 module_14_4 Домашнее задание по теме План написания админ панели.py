@@ -150,7 +150,6 @@ async def msg_calcul(message: Message, state: FSMContext):
 def initiate_db():
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
-
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Products
         (
@@ -174,9 +173,6 @@ def get_all_products():
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
     result = cursor.execute('SELECT * FROM Products')
-    # for i in result:
-    #     print(f'id: {i[0]} | title: {i[1]} | description: {i[2]} | price: {i[3]}  | pic_name: {i[4]} ')
-
     return result
     connection.close()
 
@@ -188,5 +184,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    initiate_db()
     asyncio.run(main())
