@@ -84,8 +84,9 @@ async def buying_4_products(callback: CallbackQuery):
         photo = FSInputFile(f'{i[4]}')
         await callback.message.answer_photo(
             photo=photo,
-            caption=f'Описание: {i[2]}; Цена: {i[3]}'
+            caption=f'||Описание: {i[2]}|| Цена: {i[3]}||'
         )
+    buyng_4_products.add(InlineKeyboardButton(text="Назад в меню", callback_data="main_menu"))
     buyng_4_products.adjust(4)
     await callback.message.answer(
         text='Выберите продукт для покупки:',
