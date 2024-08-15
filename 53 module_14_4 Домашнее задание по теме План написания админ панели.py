@@ -8,13 +8,14 @@ from Data_Bot import api_module_14_4 as api
 import asyncio, os
 import sqlite3
 
-from aiogram import F, Bot, Dispatcher
+from aiogram import F, Bot, Dispatcher, Router
 from aiogram.types import (Message, InlineKeyboardButton, CallbackQuery, FSInputFile)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
+
 
 bot = Bot(token=api)
 dp = Dispatcher(storage=MemoryStorage())
@@ -31,6 +32,34 @@ class UserState(StatesGroup):
     age = State()
     growth = State()
     weight = State()
+
+def initiate_db():
+    connection = sqlite3.connect('database.db')
+    cursor = connection.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Products
+        (
+        id INTEGER PRIMARY KEY,
+        title TEXT NOT NULL,
+        description TEXT NOT NULL,
+        price INTEGER NOT NULL,
+        pic_name TEXT NOT NULL
+        )
+        ''')
+    if cursor.execute('SELECT COUNT(*) FROM Products').fetchone()[0] == 0:
+        for i in range(1, 5):
+            cursor.execute('INSERT INTO Products (title, description, price,pic_name) VALUES (?,?,?,?)',
+                           (f'Product{i}', f'Описание Product{i}', f'{i * 100}', f'Img_module_14_3\\Product{i}.jpg'))
+
+    connection.commit()
+    connection.close()
+
+
+def get_all_products():
+    with sqlite3.connect('database.db') as connection:
+        cursor = connection.cursor()
+        result = cursor.execute('SELECT * FROM Products')
+        return result
 
 
 @dp.message(Command("start"))
@@ -60,7 +89,6 @@ async def msg_formulas(callback: CallbackQuery, state: FSMContext):
                                        f'для женщин: 10 x вес (кг) + 6,25 x рост (см) – 5 x возраст (г) – 161',
                                   reply_markup=builder_back.as_markup()
                                   )
-
 
 @dp.callback_query(F.data == "main_menu")
 async def cmd_start(callback: CallbackQuery):
@@ -145,38 +173,6 @@ async def msg_calcul(message: Message, state: FSMContext):
              f'Для женщины норма калорий {summery_w}',
         reply_markup=builder_back.as_markup()
     )
-
-
-def initiate_db():
-    connection = sqlite3.connect('database.db')
-    cursor = connection.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Products
-        (
-        id INTEGER PRIMARY KEY,
-        title TEXT NOT NULL,
-        description TEXT NOT NULL,
-        price INTEGER NOT NULL,
-        pic_name TEXT NOT NULL
-        )
-        ''')
-    if cursor.execute('SELECT COUNT(*) FROM Products').fetchone()[0] == 0:
-        for i in range(1, 5):
-            cursor.execute('INSERT INTO Products (title, description, price,pic_name) VALUES (?,?,?,?)',
-                           (f'Product{i}', f'Описание Product{i}', f'{i * 100}', f'Img_module_14_3\\Product{i}.jpg'))
-
-    connection.commit()
-    connection.close()
-
-
-def get_all_products():
-    connection = sqlite3.connect('database.db')
-    cursor = connection.cursor()
-    result = cursor.execute('SELECT * FROM Products')
-    return result
-    connection.close()
-
-
 
 # ____________________________________________________________________
 async def main():
